@@ -37,16 +37,39 @@ if st.sidebar.button('Predict'):
   prediction = newxmodel.predict(scaled_ip)
   probability = newxmodel.predict_proba(scaled_ip)
 
-  prob_text = f"{probability[0][1]*100:.2f}%"
+  prob_text = f"Likelihood of Diabetes: {probability[0][1]*100:.2f}%"
   
   if prediction[0] == 1:
     st.markdown(f"<p style='color:red; font-size:20px;'>Person is Prone to diabetes: <b>{prob_text}</b></p>", unsafe_allow_html=True)
+    st.markdown("<h3>Recommendations:</h3>", unsafe_allow_html=True)
+    st.write("- Consult a doctor for a proper checkup.")
+    st.write("- Maintain a healthy diet (low sugar, balanced meals).")
+    st.write("- Exercise regularly (30 mins/day).")
+    st.write("- Monitor blood glucose levels frequently.")
     
   else:
     st.markdown(f"<p style='color:blue; font-size:20px;'>The Person is not at Risk: <b>{prob_text}</b></p>", unsafe_allow_html=True)
+    st.markdown("<h3>Recommendations:</h3>", unsafe_allow_html=True)
+    st.write("- Keep maintaining a healthy lifestyle.")
+    st.write("- Regular checkups once or twice a year.")
+    st.write("- Exercise and balanced diet help prevent future risk.")
 
 st.write("This app uses a machine learning model trained on the PIMA Indian Diabetes dataset.")
+st.write("Continuous health tracking: Users can monitor their health regularly by integrating fitness trackers, diet plans, and lifestyle monitoring apps, enabling proactive diabetes management.")
 st.write("It can help rural areas without immediate access to doctors and urban users to track diabetes risk early, raising awareness as India faces increasing diabetes cases.")
+
+normal_ranges = [120, 80, 20, 100, 25, 0.5, 40, 2]
+
+fig, ax = plt.subplots(figsize=(8, 4))
+x = np.arange(len(features))
+ax.bar(x - 0.2, user_values, width=0.4, label='Your Input', color='orange')
+ax.bar(x + 0.2, normal_ranges, width=0.4, label='Normal Range', color='lightgreen')
+ax.set_xticks(x)
+ax.set_xticklabels(features, rotation=45, ha='right')
+ax.set_ylabel("Values")
+ax.set_title("Your Input vs Healthy Ranges")
+ax.legend()
+st.pyplot(fig)
 
 matrix = np.array([[45, 5],
                         [7, 23]])
