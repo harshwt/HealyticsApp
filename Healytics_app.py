@@ -21,7 +21,6 @@ insulin = st.sidebar.number_input("Insulin", min_value=0, max_value=800, value=0
 bmi = st.sidebar.number_input("BMI", min_value=0.0, max_value=60.0, value=0.0, step=0.10)
 dpf = st.sidebar.number_input("Diabetes Pedigree Function", min_value=0.0, max_value=2.0, value=0.0, step=0.1)
 
-# Correct the input array creation and scaling
 age_bmi = age * bmi
 glucose_bmi = glucose / (bmi if bmi != 0 else 1)
 age_bp = age * bp
