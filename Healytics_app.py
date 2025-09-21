@@ -35,10 +35,15 @@ scaled_ip = scaling.transform(ip)
 
 if st.sidebar.button('Predict'):
   prediction = newxmodel.predict(scaled_ip)
+  probability = newxmodel.predict_proba(scaled_ip)
+
+  prob_text = f"{probability[0][1]*100:.2f}%"
+  
   if prediction[0] == 1:
-    st.write("The person is prone to diabetes!")
+    st.markdown(f"<p style='color:red; font-size:20px;'>Person is Prone to diabetes: <b>{prob_text}</b></p>", unsafe_allow_html=True)
+    
   else:
-    st.write("The person is not at risk")
+    st.markdown(f"<p style='color:blue; font-size:20px;'>The Person is not at Risk: <b>{prob_text}</b></p>", unsafe_allow_html=True)
 
 st.write("This app uses a machine learning model trained on the PIMA Indian Diabetes dataset.")
 st.write("It can help rural areas without immediate access to doctors and urban users to track diabetes risk early, raising awareness as India faces increasing diabetes cases.")
