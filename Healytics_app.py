@@ -5,8 +5,8 @@ import seaborn as sns
 import numpy as np
 from sklearn.metrics import confusion_matrix, classification_report
 
-newxmodel = joblib.load("diabetes_model.pkl")
-scaling = joblib.load("scaler.pkl")
+newxmodel = joblib.load("./diabetes_model.pkl")
+scaling = joblib.load("./scaler.pkl")
 
 st.title("Diabetes Prediction App")
 st.write("Enter the following details to predict diabetes:")
