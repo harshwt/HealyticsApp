@@ -59,7 +59,7 @@ st.write("Continuous health tracking: Users can monitor their health regularly b
 st.write("It can help rural areas without immediate access to doctors and urban users to track diabetes risk early, raising awareness as India faces increasing diabetes cases.")
 
 normal_ranges = [120, 80, 20, 100, 25, 0.5, 40, 2]
-
+features = ['Pregnancies', 'Glucose', 'BloodPressure', 'Age', 'SkinThickness', 'Insulin', 'BMI', 'DiabetesPedigreeFunction']
 fig, ax = plt.subplots(figsize=(8, 4))
 x = np.arange(len(features))
 ax.bar(x - 0.2, user_values, width=0.4, label='Your Input', color='orange')
