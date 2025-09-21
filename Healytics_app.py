@@ -5,8 +5,8 @@ import seaborn as sns
 import numpy as np
 from sklearn.metrics import confusion_matrix, classification_report
 
-model = joblib.load("diabetes_model.pkl")
-scaler = joblib.load("scaler.pkl")
+newxmodel = joblib.load("diabetes_model.pkl")
+scaling = joblib.load("scaler.pkl")
 
 st.title("Diabetes Prediction App")
 st.write("Enter the following details to predict diabetes:")
@@ -33,7 +33,8 @@ age_dpf = age * dpf
 ip = np.array([[preg, glucose, bp, age, skin, insulin, bmi, dpf,
                         age_bmi, glucose_bmi, age_bp, age_skin, age_insulin, age_preg, age_dpf]])
 
-scaled_ip = scaler.transform(ip)
+
+scaled_ip = scaling.transform(ip)
 
 if st.sidebar.button('Predict'):
   prediction = newxmodel.predict(scaled_ip)
