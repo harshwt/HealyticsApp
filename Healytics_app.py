@@ -58,18 +58,25 @@ st.write("This app uses a machine learning model trained on the PIMA Indian Diab
 st.write("Continuous health tracking: Users can monitor their health regularly by integrating fitness trackers, diet plans, and lifestyle monitoring apps, enabling proactive diabetes management.")
 st.write("It can help rural areas without immediate access to doctors and urban users to track diabetes risk early, raising awareness as India faces increasing diabetes cases.")
 
-normal_ranges = [120, 80, 20, 100, 25, 0.5, 40, 2]
+normal_ranges = [0, 120, 80, 20, 100, 25, 0.5, 40, 2]  # Adjust if needed
 features = ['Pregnancies', 'Glucose', 'BloodPressure', 'Age', 'SkinThickness', 'Insulin', 'BMI', 'DiabetesPedigreeFunction']
+
+user_values = [preg, glucose, bp, age, skin, insulin, bmi, dpf]
+
 fig, ax = plt.subplots(figsize=(8, 4))
 x = np.arange(len(features))
+
 ax.bar(x - 0.2, user_values, width=0.4, label='Your Input', color='orange')
 ax.bar(x + 0.2, normal_ranges, width=0.4, label='Normal Range', color='lightgreen')
+
 ax.set_xticks(x)
 ax.set_xticklabels(features, rotation=45, ha='right')
 ax.set_ylabel("Values")
 ax.set_title("Your Input vs Healthy Ranges")
 ax.legend()
+
 st.pyplot(fig)
+
 
 matrix = np.array([[45, 5],
                         [7, 23]])
