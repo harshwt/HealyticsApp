@@ -22,7 +22,17 @@ bmi = st.sidebar.number_input("BMI", min_value=0.0, max_value=60.0, value=0.0, s
 dpf = st.sidebar.number_input("Diabetes Pedigree Function", min_value=0.0, max_value=2.0, value=0.0, step=0.1)
 
 # Correct the input array creation and scaling
-ip = np.array([[preg, glucose, bp, age, skin, insulin, bmi, dpf]])
+age_bmi = age * bmi
+glucose_bmi = glucose / (bmi if bmi != 0 else 1)
+age_bp = age * bp
+age_skin = age * skin
+age_insulin = age * insulin
+age_preg = age * preg
+age_dpf = age * dpf
+
+ip = np.array([[preg, glucose, bp, age, skin, insulin, bmi, dpf,
+                        age_bmi, glucose_bmi, age_bp, age_skin, age_insulin, age_preg, age_dpf]])
+
 scaled_ip = scaler.transform(ip)
 
 if st.sidebar.button('Predict'):
