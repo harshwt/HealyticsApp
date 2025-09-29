@@ -40,19 +40,19 @@ if st.sidebar.button('Predict'):
   prob = probability[0][1]
   prob_text = f"Likelihood of Diabetes: {prob*100:.2f}%"
   st.write("Prediction:", "Diabetic" if prediction[0] == 1 else "Non-Diabetic")
-  st.success(prob_text)
+  board = st.success(prob_text)
 
   if prob < 0.3:
     risk_level = "Low Risk"
     color = "green"
-    st.markdown(f"<p style='color:green; font-size:20px;'> Low Risk : <b>{prob_text}</b></p>", unsafe_allow_html=True)
+    st.markdown(f"<p style='color:green; font-size:20px;'> Low Risk : <b>{board}</b></p>", unsafe_allow_html=True)
     st.markdown("<h3>Recommendations:</h3>", unsafe_allow_html=True)
     st.write("- Keep maintaining a healthy lifestyle.")
     st.write("- Regular checkups once or twice a year.")
     st.write("- Exercise and balanced diet help prevent future risk.")
     
   elif prob < 0.6:
-    st.markdown(f"<p style='color:orange; font-size:20px;'> Moderate Risk : <b>{prob_text}</b></p>", unsafe_allow_html=True)
+    st.markdown(f"<p style='color:orange; font-size:20px;'> Moderate Risk : <b>{board}</b></p>", unsafe_allow_html=True)
     risk_level = "Moderate Risk"
     color = "orange"
     st.markdown("<h3>Recommendations:</h3>", unsafe_allow_html=True)
@@ -60,7 +60,7 @@ if st.sidebar.button('Predict'):
     st.write("- Maintain a balanced diet and exercise routinely.")
     st.write("- Consult a doctor if risk factors increase.")
   else:
-    st.markdown(f"<p style='color:red; font-size:20px;'>Person is Prone to diabetes: <b>{prob_text}</b></p>", unsafe_allow_html=True)
+    st.markdown(f"<p style='color:red; font-size:20px;'>Person is Prone to diabetes: <b>{board}</b></p>", unsafe_allow_html=True)
     risk_level = "High Risk"
     color = "red"
     st.markdown("<h3>Recommendations:</h3>", unsafe_allow_html=True)
