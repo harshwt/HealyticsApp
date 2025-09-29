@@ -36,6 +36,10 @@ scaled_ip = scaling.transform(ip)
 if st.sidebar.button('Predict'):
   prediction = newxmodel.predict(scaled_ip)
   probability = newxmodel.predict_proba(scaled_ip)
+  
+if 'prediction' in st.session_state:
+  prediction = st.session_state.prediction
+  probability = st.session_state.probability
   prob_text = f"Likelihood of Diabetes: {probability[0][1]*100:.2f}%"
   st.write("Prediction:", "Diabetic" if prediction[0] == 1 else "Non-Diabetic")
   st.success(prob_text)
@@ -49,7 +53,6 @@ if st.sidebar.button('Predict'):
     st.write("- Monitor blood glucose levels frequently.")
     
   else:
-    st.markdown(f"<p style='color:blue; font-size:20px;'>The Person is not at Risk: <b>{prob_text}</b></p>", unsafe_allow_html=True)
     st.markdown("<h3>Recommendations:</h3>", unsafe_allow_html=True)
     st.write("- Keep maintaining a healthy lifestyle.")
     st.write("- Regular checkups once or twice a year.")
