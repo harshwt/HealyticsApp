@@ -33,18 +33,11 @@ ip = np.array([[preg, glucose, bp, age, skin, insulin, bmi, dpf,
                 age_bmi, glucose_bmi, age_bp, age_skin, age_insulin, age_preg, age_dpf]])
 scaled_ip = scaling.transform(ip)
 
-if "prediction" not in st.session_state:
-    st.session_state.prediction = None
-if "probability" not in st.session_state:
-    st.session_state.probability = None
   
 if st.sidebar.button('Predict'):
   prediction = newxmodel.predict(scaled_ip)
   probability = newxmodel.predict_proba(scaled_ip)
-  
-if 'prediction' in st.session_state:
-  prediction = st.session_state.prediction
-  probability = st.session_state.probability
+
   prob_text = f"Likelihood of Diabetes: {probability[0][1]*100:.2f}%"
   st.write("Prediction:", "Diabetic" if prediction[0] == 1 else "Non-Diabetic")
   st.success(prob_text)
