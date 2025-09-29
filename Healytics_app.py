@@ -33,11 +33,21 @@ ip = np.array([[preg, glucose, bp, age, skin, insulin, bmi, dpf,
                 age_bmi, glucose_bmi, age_bp, age_skin, age_insulin, age_preg, age_dpf]])
 scaled_ip = scaling.transform(ip)
 
+if st.sidebar.button("Predict", key="predict_button"):
+    st.session_state.prediction = newxmodel.predict(scaled_ip)
+    st.session_state.probability = newxmodel.predict_proba(scaled_ip)
+'''
 if st.sidebar.button('Predict'):
   prediction = newxmodel.predict(scaled_ip)
   probability = newxmodel.predict_proba(scaled_ip)
-
+'''
+if "prediction" in st.session_state:
+    prediction = st.session_state.prediction
+    probability = st.session_state.probability
+  
   prob_text = f"Likelihood of Diabetes: {probability[0][1]*100:.2f}%"
+  st.write("Prediction:", "Diabetic" if prediction[0] == 1 else "Non-Diabetic")
+  st.success(prob_text)
   
   if prediction[0] == 1:
     st.markdown(f"<p style='color:red; font-size:20px;'>Person is Prone to diabetes: <b>{prob_text}</b></p>", unsafe_allow_html=True)
@@ -59,7 +69,7 @@ st.write("Continuous health tracking: Users can monitor their health regularly b
 st.write("It can help rural areas without immediate access to doctors and urban users to track diabetes risk early, raising awareness as India faces increasing diabetes cases.")
 
 features = ['Pregnancies', 'Glucose', 'BloodPressure', 'Age', 'SkinThickness', 'Insulin', 'BMI', 'DiabetesPedigreeFunction']
-normal_ranges = [0, 120, 80, 20, 100, 25, 0.5, 40] 
+normal_ranges = [0, 120, 80, 20, 100, 25, 20, 40] 
 user_values = [preg, glucose, bp, age, skin, insulin, bmi, dpf]
 
 x = np.arange(len(features))
