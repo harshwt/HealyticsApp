@@ -34,19 +34,8 @@ ip = np.array([[preg, glucose, bp, age, skin, insulin, bmi, dpf,
 scaled_ip = scaling.transform(ip)
 
 if st.sidebar.button('Predict'):
-    prediction = newxmodel.predict(scaled_ip)
-    probability = newxmodel.predict_proba(scaled_ip)
-
-    prob_text = f"Likelihood of Diabetes: {probability[0][1]*100:.2f}%"
-    st.write("Prediction:", "Diabetic" if prediction[0] == 1 else "Non-Diabetic")
-    st.success(prob_text)
-
-'''
-if st.sidebar.button('Predict'):
   prediction = newxmodel.predict(scaled_ip)
   probability = newxmodel.predict_proba(scaled_ip)
-'''
-
   prob_text = f"Likelihood of Diabetes: {probability[0][1]*100:.2f}%"
   st.write("Prediction:", "Diabetic" if prediction[0] == 1 else "Non-Diabetic")
   st.success(prob_text)
