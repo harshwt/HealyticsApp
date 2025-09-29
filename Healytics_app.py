@@ -69,22 +69,6 @@ if st.sidebar.button('Predict'):
     st.write("- Exercise regularly (30 mins/day).")
     st.write("- Monitor blood glucose levels frequently.")
     
-  '''
-  '''
-  if prob >:
-    st.markdown(f"<p style='color:red; font-size:20px;'>Person is Prone to diabetes: <b>{prob_text}</b></p>", unsafe_allow_html=True)
-    st.markdown("<h3>Recommendations:</h3>", unsafe_allow_html=True)
-    st.write("- Consult a doctor for a proper checkup.")
-    st.write("- Maintain a healthy diet (low sugar, balanced meals).")
-    st.write("- Exercise regularly (30 mins/day).")
-    st.write("- Monitor blood glucose levels frequently.")
-    
-  else:
-    st.markdown("<h3>Recommendations:</h3>", unsafe_allow_html=True)
-    st.write("- Keep maintaining a healthy lifestyle.")
-    st.write("- Regular checkups once or twice a year.")
-    st.write("- Exercise and balanced diet help prevent future risk.")
-  '''
 
 st.write("This app uses a machine learning model trained on the PIMA Indian Diabetes dataset.")
 st.write("Continuous health tracking: Users can monitor their health regularly by integrating fitness trackers, diet plans, and lifestyle monitoring apps, enabling proactive diabetes management.")
